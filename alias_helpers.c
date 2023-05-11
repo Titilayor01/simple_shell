@@ -1,6 +1,5 @@
 #include "shell.h"
 
-int status;
 
 /**
  * free_aliases - frees all aliases

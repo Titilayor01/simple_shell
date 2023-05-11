@@ -65,19 +65,14 @@ char **make_array(char *str, char delim, char **if_sep)
 				if (*(str_ptr + 1) != '\0' && *(str_ptr + 2) != '\0')
 					*if_sep = str_ptr + 2;
 				break;
-			}
-			if (*str_ptr != '\0')
+			} else if (*str_ptr != '\0')
 			{
 				array[i] = str_ptr;
 				i++;
 			}
-		}
-		str_ptr++;
-	}
-	array[i] = NULL;
-
-	return (array);
-}
+		} str_ptr++;
+	} array[i] = NULL;
+	return (array); }
 
 /**
  * list_len - finds the length of a list, or the index of an entry
