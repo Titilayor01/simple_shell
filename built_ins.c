@@ -1,6 +1,6 @@
 #include "shell.h"
 
-int status;
+extern int status;
 
 /**
  * _setenv - sets and environmental variable

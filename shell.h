@@ -121,4 +121,20 @@ char **strtow(char *, char *);
 
 char **strtow2(char *, char);
 
+typedef struct builtin
+{
+	char *type;
+	int (*func)(info_t *);
+} builtin_table;
+
+int _myhistory(info_t *);
+
+int _myalias(info_t *);
+
+int _myexit(info_t *);
+
+int _mycd(info_t *);
+
+int _myhelp(info_t *);
+
 #endif
