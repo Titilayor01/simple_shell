@@ -97,8 +97,8 @@ write (man 2 write)
 - README.md
 - man_1_simple_shell
 - AUTHORS
-- alias_helpers.c 
-- array_manip.c 
+- alias_helpers.c
+- array_manip.c
 - built_ins.c
 - lia.c
 - liaaa.c
