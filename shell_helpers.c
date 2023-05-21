@@ -1,8 +1,8 @@
 #include "shell.h"
 
-int status;
+extern int status;
 
-char *shell_name;
+extern char *shell_name;
 
 /**
  * command_manager - manages the process a command goes through to get executed

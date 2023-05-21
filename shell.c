@@ -1,10 +1,10 @@
 #include "shell.h"
 
-int status = 0;
+extern int status = 0;
 
-int line_num = 1;
+extern int line_num = 1;
 
-char *shell_name = NULL;
+extern char *shell_name = NULL;
 
 /**
  * main - executes commands from the terminal

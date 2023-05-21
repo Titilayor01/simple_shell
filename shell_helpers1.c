@@ -1,10 +1,10 @@
 #include "shell.h"
 
-int status;
+extern int status;
 
-int line_num;
+extern int line_num;
 
-char *shell_name;
+extern char *shell_name;
 
 /**
  * input_san - sanitizes input from the command line

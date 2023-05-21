@@ -121,6 +121,11 @@ char **strtow(char *, char *);
 
 char **strtow2(char *, char);
 
+/**
+ *struct builtin - contains a builtin string and related function
+ *@type: the builtin command flag
+ *@func: the function
+ */
 typedef struct builtin
 {
 	char *type;
