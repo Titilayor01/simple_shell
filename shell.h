@@ -11,6 +11,7 @@
 #include <string.h>
 #include <limits.h>
 #include <signal.h>
+#include <errno.h>
 
 #define FALSE 0
 #define TRUE 1
@@ -105,5 +106,15 @@ int print_env(void);
 char *_itoa(int n);
 
 int _atoi(char *s);
+
+int is_chain(info_t *, char *, size_t *);
+
+void check_chain(info_t *, char *, size_t *, size_t, size_t);
+
+int replace_alias(info_t *);
+
+int replace_vars(info_t *);
+
+int replace_string(char **, char *);
 
 #endif
