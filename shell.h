@@ -117,4 +117,8 @@ int replace_vars(info_t *);
 
 int replace_string(char **, char *);
 
+char **strtow(char *, char *);
+
+char **strtow2(char *, char);
+
 #endif
