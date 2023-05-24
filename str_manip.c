@@ -1,122 +1,103 @@
 #include "shell.h"
 
 /**
- *  _strlen - returns length of a string
- * @str: string to be evaluated
+ * _strcmpdir - compares strings to find dir.
  *
- * Return: the length of the string
- */
-int _strlen(char *str)
+ * @s1: string.
+ * @s2: string.
+ *
+ * Return: if match and any other number if otherwise.
+ **/
+int _strcmpdir(char *s1, char *s2)
 {
 	int i = 0;
 
-	if (str == NULL)
-		return (0);
+	for (; (*s2 != '\0' && *s1 != '\0') && *s1 == *s2; s1++)
+	{
+		if (i == 3)
+			break;
+		i++;
+		s2++;
+	}
 
+	return (*s1 - *s2);
+}
+/**
+ * charput - writes the character like putchar
+ * @c: The character to print
+ *
+ * Return: On success 1.
+ * On error, -1 is returned, and errno is set appropriately.
+ */
+int charput(char c)
+{
+	return (write(1, &c, 1));
+}
+
+/**
+ * place - similar to puts in C
+ * @str: a pointer the integer we want to set to 402
+ *
+ * Return: int
+ */
+void place(char *str)
+{
 	while (*str != '\0')
 	{
-		i++;
+		charput(*str);
 		str++;
 	}
+}
+
+/**
+ * _strlen - Len string.
+ * @str: My string.
+ * Return: Length.
+ */
+int _strlen(char *str)
+{
+	int i;
+
+	for (i = 0; str[i] != '\0'; i++)
+		;
 
 	return (i);
 }
 
 /**
- * _strdup - allocates a space in memory for a copy of a string
- * @src: string a copy is made of
- *
- * Return: a pointer to the copy, or NULL if failure
- */
-char *_strdup(char *src)
-{
-	int len = _strlen(src);
-	char *dest = malloc(len + 1);
-	char *ptr;
-
-	if (dest == NULL)
-		exit(EXIT_FAILURE);
-
-	ptr = dest;
-
-	while (*src != '\0')
-	{
-		*ptr = *src;
-		ptr++;
-		src++;
-	}
-
-	*ptr = '\0';
-
-	return (dest);
-}
-
-/**
- * str_concat - concatenates two strings
- * @s1: first string
- * @s2: second string
- *
- * Return: a pointer to the new string, or NULL if failure
+ * str_concat - concatane strings.
+ * @s1: string.
+ * @s2: second string.
+ * Return: strings.
  */
 char *str_concat(char *s1, char *s2)
 {
-	int len = _strlen(s1) + _strlen(s2);
-	char *dest = malloc(len + 1);
-	char *ptr = dest;
+	char *a;
+	int lens1, lens2, j, i, e;
 
-	if (s1 != NULL)
+	if (s1 == NULL)
+		s1 = "";
+
+	if (s2 == NULL)
+		s2 = "";
+
+	lens1 = _strlen(s1);
+
+	lens2 = _strlen(s2);
+
+	a = malloc(((lens1) + (lens2) + 1) * sizeof(char));
+
+	if (a == NULL)
+		return (NULL);
+
+	for (j = 0; j < lens1; j++)
 	{
-		while (*s1 != '\0')
-		{
-			*ptr = *s1;
-			ptr++;
-			s1++;
-		}
+		a[j] = s1[j];
 	}
 
-	if (s2 != NULL)
+	for (i = lens1, e = 0; e <= lens2; i++, e++)
 	{
-		while (*s2 != '\0')
-		{
-			*ptr = *s2;
-			ptr++;
-			s2++;
-		}
+		a[i] = s2[e];
 	}
-
-	*ptr = '\0';
-
-	return (dest);
-}
-
-/**
- * str_compare - compare two string
- * @s1: string to be compared
- * @s2: string to be compared
- * @pref_or_match: if string needs to be matched exactly or if just a prefix
- * needs to be matched
- *
- * Return: difference between strings
- */
-int str_compare(char *s1, char *s2, int pref_or_match)
-{
-	if (s1 == NULL || s2 == NULL)
-		return (FALSE);
-
-	while (*s1 != '\0' && *s2 != '\0')
-	{
-		if (*s1 != *s2)
-			return (FALSE);
-
-		s1++;
-		s2++;
-	}
-
-	if (pref_or_match == PREFIX)
-		return (TRUE);
-
-	if (*s1 == *s2)
-		return (TRUE);
-
-	return (FALSE);
+	return (a);
 }

@@ -1,97 +1,47 @@
 #include "shell.h"
 
 /**
- * _itoa - converts an int into a string
- * @n: int to be converted
+ * prompt - call prompt from another function (prompt)
  *
- * Return: the converted number
- */
-char *_itoa(int n)
+ **/
+void prompt(void)
 {
-	char *buf = malloc(12);
-	char *ptr = buf;
-	int is_min = FALSE;
-	int i_mask = 1000000000;
-	int digit = 0;
-
-	if (n == INT_MIN)
+	for (;;)
 	{
-		*ptr = '-';
-		ptr++;
-		n = INT_MAX;
-		is_min = TRUE;
-	}
+		char *text = NULL, **environ;
+		pid_t child_pid;
+		int status, lenbuf;
+		size_t bufsize = 0;
 
-	if (n < 0)
-	{
-		*ptr = '-';
-		ptr++;
-		n = -n;
-	}
-
-	while (i_mask > 9 && digit == 0)
-	{
-		digit = n / i_mask;
-		n %= i_mask;
-		i_mask /= 10;
-	}
-
-	if (digit != 0)
-	{
-		*ptr = digit + '0';
-		ptr++;
-	}
-
-	while (i_mask > 9)
-	{
-		digit = n / i_mask;
-		*ptr = digit + '0';
-		ptr++;
-		n %= i_mask;
-		i_mask /= 10;
-	}
-
-	if (is_min == TRUE)
-		n += 1;
-
-	*ptr = n + '0';
-	ptr++;
-	*ptr = '\0';
-	return (buf);
-}
-
-/**
- * _atoi - converts a string into a number
- * @s: string to be converted
- *
- * Return: the converted number
- */
-int _atoi(char *s)
-{
-	int n = 0;
-	int sign = 1;
-	int s_int;
-
-	if (*s == '=' && *(s + 1) >= '0' && *(s + 1) <= '9')
-	{
-		sign = -1;
-		s++;
-	}
-
-	while (*s != '\0')
-	{
-		if (*s >= '0' && *s <= '9')
+		place("$ ");
+		lenbuf = getline(&text, &bufsize, stdin);
+		if (lenbuf == -1)
+			exit(98);
+		if (compareExit(text, "exit") == 0)
+			exit(0);
+		if (compareEnv(text, "env") == 0)
 		{
-			s_int = *s - 48;
-			if (sign == 1)
-				n = (n * 10) + s_int;
-			else
-				n = (n * 10) - s_int;
-		}
+			while (*environ != NULL)
+			{
+				if (!(_strcmpdir(*environ, "USER")) ||
+						!(_strcmpdir(*environ, "LANGUAGE")) ||
+						!(_strcmpdir(*environ, "SESSION")) ||
+						!(_strcmpdir(*environ, "COMPIZ_CONFIG_PROFILE")) ||
+						!(_strcmpdir(*environ, "SHLV")) ||
+						!(_strcmpdir(*environ, "HOME")) ||
+						!(_strcmpdir(*environ, "C_IS")) ||
+						!(_strcmpdir(*environ, "DESKTOP_SESSION")) ||
+						!(_strcmpdir(*environ, "LOGNAME")) ||
+						!(_strcmpdir(*environ, "TERM")) ||
+						!(_strcmpdir(*environ, "PATH")))
+				{
+					place(*environ), place("\n"); }
+				environ++; }}
+		child_pid = fork();
+		if (child_pid < 0)
+			perror("Error");
+		if (child_pid == 0)
+			identify_string(text);
 		else
-			return (-1);
-		s++;
-	}
-
-	return (n);
-}
+			wait(&status);
+	}}
