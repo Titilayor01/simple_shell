@@ -1,4 +1,5 @@
 #include "shell.h"
+
 /**
  * read_file - Read Command From File
  * @filename:Filename
@@ -11,7 +12,7 @@ void read_file(char *filename, char **argv)
 	FILE *fp;
 	char *line = NULL;
 	size_t len = 0;
-	int counter = 0;
+	int ctr = 0;
 
 	fp = fopen(filename, "r");
 	if (fp == NULL)
@@ -20,8 +21,8 @@ void read_file(char *filename, char **argv)
 	}
 	while ((getline(&line, &len, fp)) != -1)
 	{
-		counter++;
-		treat_file(line, counter, fp, argv);
+		ctr++;
+		treat_file(line, ctr, fp, argv);
 
 	}
 	if (line)
@@ -29,18 +30,20 @@ void read_file(char *filename, char **argv)
 	fclose(fp);
 	exit(0);
 }
+
 /**
- * treat_file - PARSE Check Command Fork Wait Excute in Line of File
- * @line: Line From A File
- * @counter:Error Counter
- * @fp:File Descriptor
- * @argv:Program Name
- * Return : Excute A line void
+ * treat_file - parse check command fork wait execute in line of file
+ * @line: line from a file
+ * @counter: error counter
+ * @fp: file descriptor
+ * @argv: program name
+ * Return : execute a line void
  */
+
 void treat_file(char *line, int counter, FILE *fp, char **argv)
 {
 	char **cmd;
-	int st = 0;
+	int sta = 0;
 
 	cmd = parse_cmd(line);
 
@@ -50,25 +53,27 @@ void treat_file(char *line, int counter, FILE *fp, char **argv)
 		}
 		else if (check_builtin(cmd) == 0)
 		{
-			st = handle_builtin(cmd, st);
+			sta = handle_builtin(cmd, sta);
 			free(cmd);
 		}
 		else
 		{
-			st = check_cmd(cmd, line, counter, argv);
+			sta = check_cmd(cmd, line, counter, argv);
 			free(cmd);
 		}
 }
+
 /**
- * exit_bul_for_file - Exit Shell Case Of File
- * @line: Line From A File
- * @cmd: Parsed Command
- * @fd:File Descriptor
- * Return : Case Of Exit in A File Line
+ * exit_bul_for_file - exit shell case of file
+ * @line: line from a file
+ * @cmd: parsed command
+ * @fd: file descriptor
+ * Return : case of exit in a file line
  */
+
 void exit_bul_for_file(char **cmd, char *line, FILE *fd)
 {
-	int statue, i = 0;
+	int stat, x = 0;
 
 	if (cmd[1] == NULL)
 	{
@@ -77,17 +82,17 @@ void exit_bul_for_file(char **cmd, char *line, FILE *fd)
 		fclose(fd);
 		exit(errno);
 	}
-	while (cmd[1][i])
+	while (cmd[1][x])
 	{
-		if (_isalpha(cmd[1][i++]) < 0)
+		if (_isalpha(cmd[1][x++]) < 0)
 		{
 			perror("illegal number");
 		}
 	}
-	statue = _atoi(cmd[1]);
+	stat = _atoi(cmd[1]);
 	free(line);
 	free(cmd);
 	fclose(fd);
-	exit(statue);
+	exit(stat);
 
 }

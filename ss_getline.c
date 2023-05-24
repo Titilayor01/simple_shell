@@ -1,13 +1,14 @@
 #include "shell.h"
 
 /**
-* _getline - Read The Input By User From Stdin
-* Return: Input
+* _getline - read the input by user from stdin
+* Return: input
 */
+
 char *_getline()
 {
-int i, buffsize = BUFSIZE, rd;
-char c = 0;
+int x, buffsize = BUFSIZE, rd;
+char s = 0;
 char *buff = malloc(buffsize);
 
 	if (buff == NULL)
@@ -16,22 +17,22 @@ char *buff = malloc(buffsize);
 		return (NULL);
 	}
 
-	for (i = 0; c != EOF && c != '\n'; i++)
+	for (x = 0; s != EOF && s != '\n'; x++)
 	{
 		fflush(stdin);
-		rd = read(STDIN_FILENO, &c, 1);
+		rd = read(STDIN_FILENO, &s, 1);
 		if (rd == 0)
 		{
 			free(buff);
 			exit(EXIT_SUCCESS);
 		}
-		buff[i] = c;
+		buff[x] = s;
 		if (buff[0] == '\n')
 		{
 			free(buff);
 			return ("\0");
 		}
-		if (i >= buffsize)
+		if (x >= buffsize)
 		{
 			buff = _realloc(buff, buffsize, buffsize + 1);
 			if (buff == NULL)
@@ -40,7 +41,7 @@ char *buff = malloc(buffsize);
 			}
 		}
 	}
-	buff[i] = '\0';
+	buff[x] = '\0';
 	hashtag_handle(buff);
 	return (buff);
 }
@@ -50,15 +51,16 @@ char *buff = malloc(buffsize);
  * @buff: input;
  * Return:void
  */
+
 void hashtag_handle(char *buff)
 {
-	int i;
+	int x;
 
-		for (i = 0; buff[i] != '\0'; i++)
+		for (x = 0; buff[x] != '\0'; x++)
 		{
-			if (buff[i] == '#')
+			if (buff[x] == '#')
 			{
-			buff[i] = '\0';
+			buff[x] = '\0';
 			break;
 			}
 	}
