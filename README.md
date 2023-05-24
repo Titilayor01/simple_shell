@@ -94,20 +94,15 @@ write (man 2 write)
 
 # files
 - .gitignore
-- README.md
-- man_1_simple_shell
 - AUTHORS
-- alias_helpers.c
-- array_manip.c
-- built_ins.c
-- lia.c
-- liaaa.c
-- math_funcs.c
+- README.md
 - shell.c
 - shell.h
-- shell_helpers.c
-- shell_helpers1.c
-- str_manip.c
+- ss_engine.c
+- ss_execute.c
+- ss_gas.c
+- ss_prompt.c
+- ss_string.c
 
 ## How to add Author file
 `Bash script for generating the list of authors in git repo`
