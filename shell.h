@@ -11,7 +11,6 @@
 #include <string.h>
 #include <limits.h>
 #include <signal.h>
-#include <errno.h>
 
 #define FALSE 0
 #define TRUE 1
@@ -106,56 +105,5 @@ int print_env(void);
 char *_itoa(int n);
 
 int _atoi(char *s);
-
-int is_chain(info_t *, char *, size_t *);
-
-void check_chain(info_t *, char *, size_t *, size_t, size_t);
-
-int replace_alias(info_t *);
-
-int replace_vars(info_t *);
-
-int replace_string(char **, char *);
-
-char **strtow(char *, char *);
-
-char **strtow2(char *, char);
-
-/**
- *struct builtin - contains a builtin string and related function
- *@type: the builtin command flag
- *@func: the function
- */
-typedef struct builtin
-{
-	char *type;
-	int (*func)(info_t *);
-} builtin_table;
-
-int _myhistory(info_t *);
-
-int _myalias(info_t *);
-
-int _myexit(info_t *);
-
-int _mycd(info_t *);
-
-int _myhelp(info_t *);
-
-char **get_environ(info_t *);
-
-int _unsetenv(info_t *, char *);
-
-int _setenv(info_t *, char *, char *);
-
-char *_getenv(info_t *, const char *);
-
-int _myenv(info_t *);
-
-int _mysetenv(info_t *);
-
-int _myunsetenv(info_t *);
-
-int populate_env_list(info_t *);
 
 #endif
