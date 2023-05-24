@@ -1,11 +1,13 @@
 #include "shell.h"
+
 /**
- *  _prerror - Print Custome Error
- * @argv:Program Name
- * @c:Error Count
- * @cmd:Command
- * Return: Void
+ * _prerror - print custom error
+ * @argv: program name
+ * @c: error count
+ * @cmd: command
+ * Return: void
  */
+
 void _prerror(char **argv, int c, char **cmd)
 {
 	char *er = _itoa(c);

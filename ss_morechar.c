@@ -1,14 +1,15 @@
 #include "shell.h"
 
 /**
- * _strcmp - Compare Two String
- * @s1:String 1
- * @s2:String 2
- * Return: 0 If Identical Otherwise How Much Diffrent
+ * _strcmp - compare two string
+ * @s1: string 1
+ * @s2: string 2
+ * Return: 0 if identical otherwise how much diffrent
  */
+
 int _strcmp(char *s1, char *s2)
 {
-int cmp = 0, i, len1, len2;
+int cmp = 0, x, len1, len2;
 len1 = _strlen(s1);
 len2 = _strlen(s2);
 
@@ -16,11 +17,11 @@ len2 = _strlen(s2);
 		return (1);
 	if (len1 != len2)
 		return (1);
-	for (i = 0; s1[i]; i++)
+	for (x = 0; s1[x]; x++)
 	{
-		if (s1[i] != s2[i])
+		if (s1[x] != s2[x])
 		{
-			cmp = s1[i] - s2[i];
+			cmp = s1[x] - s2[x];
 			break;
 		}
 		else
@@ -28,11 +29,13 @@ len2 = _strlen(s2);
 	}
 	return (cmp);
 }
+
 /**
- * _isalpha - Check if Alphabtic
- *@c: Character
- * Return: 1 If True 0 If Not
+ * _isalpha - check if alphabetic
+ *@c: character
+ * Return: 1 if true 0 if not
  */
+
 int _isalpha(int c)
 {
 if (((c >= 97) && (c <= 122)) || ((c >= 65) && (c <= 90)))
@@ -44,63 +47,69 @@ else
 return (0);
 }
 }
+
 /**
- * _itoa - Convert Integer To Char
- * @n: Int To Convert
- * Return: Char Pointer
+ * _itoa - convert integer to char
+ * @n: int to convert
+ * Return: char pointer
  */
+
 char *_itoa(unsigned int n)
 {
-	int len = 0, i = 0;
+	int length = 0, x = 0;
 	char *s;
 
-	len = intlen(n);
-	s = malloc(len + 1);
+	length = intlen(n);
+	s = malloc(length + 1);
 	if (!s)
 		return (NULL);
 	*s = '\0';
 	while (n / 10)
 	{
-		s[i] = (n % 10) + '0';
+		s[x] = (n % 10) + '0';
 		n /= 10;
-		i++;
+		x++;
 	}
-	s[i] = (n % 10) + '0';
-	array_rev(s, len);
-	s[i + 1] = '\0';
+	s[x] = (n % 10) + '0';
+	array_rev(s, length);
+	s[x + 1] = '\0';
 	return (s);
 }
+
 /**
- *  array_rev - Reverse Array
- * @arr:Array To Reverse
- * @len:Length Of Array
- * Return: Void(Reverse Array)
+ * array_rev - reverse array
+ * @arr: array to reverse
+ * @len: length of array
+ * Return: void(reverse array)
  */
+
 void array_rev(char *arr, int len)
 {
-	int i;
+	int x;
 	char tmp;
 
-	for (i = 0; i < (len / 2); i++)
+	for (x = 0; x < (len / 2); x++)
 	{
-		tmp = arr[i];
-		arr[i] = arr[(len - 1) - i];
-		arr[(len - 1) - i] = tmp;
+		tmp = arr[x];
+		arr[x] = arr[(len - 1) - x];
+		arr[(len - 1) - x] = tmp;
 	}
 }
+
 /**
- * intlen - Determine Length Of Int
- * @num: Given Int
- * Return: Length Of Int
+ * intlen - determine length of int
+ * @num: given int
+ * Return: length of int
  */
+
 int intlen(int num)
 {
-	int len = 0;
+	int length = 0;
 
 	while (num != 0)
 	{
-		len++;
+		length++;
 		num /= 10;
 	}
-	return (len);
+	return (length);
 }

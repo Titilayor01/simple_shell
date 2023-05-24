@@ -1,15 +1,16 @@
 #include "shell.h"
 
 /**
- * parse_cmd - Parse Line Of Input
- * @input:User Input To Parse
- * Return: Array Of Char (Parsed):Simple Shell
+ * parse_cmd - parse line of input
+ * @input: user input to parse
+ * Return: array of char (parsed):Simple Shell
  */
+
 char **parse_cmd(char *input)
 {
 	char **tokens;
 	char *token;
-	int i, buffsize = BUFSIZE;
+	int x, buffsize = BUFSIZE;
 
 	if (input == NULL)
 		return (NULL);
@@ -21,12 +22,12 @@ char **parse_cmd(char *input)
 	}
 
 	token = _strtok(input, "\n ");
-	for (i = 0; token; i++)
+	for (x = 0; token; x++)
 	{
-		tokens[i] = token;
+		tokens[x] = token;
 		token = _strtok(NULL, "\n ");
 	}
-	tokens[i] = NULL;
+	tokens[x] = NULL;
 
 	return (tokens);
 }
