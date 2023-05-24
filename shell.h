@@ -101,7 +101,7 @@ void _prerror(char **argv, int c, char **cmd);
  * @fun:fun to excute when bultin true
  */
 
-typedef struct  bulltin
+typedef struct bulltin
 {
 	char *command;
 	int (*fun)(char **line, int er);
