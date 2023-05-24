@@ -1,23 +1,23 @@
 #include "shell.h"
 
 /**
- * main - Simple Shell (Hsh)
- * @argc: Argument Count
- * @argv:Argument Value
+ * main - simple shell (Hsh)
+ * @argc: Argument Counter
+ * @argv: Value of Argument
  * Return: Exit Value By Status
  */
 
 int main(__attribute__((unused)) int argc, char **argv)
 {
 	char *input, **cmd;
-	int counter = 0, statue = 1, st = 0;
+	int ctr = 0, stat = 1, st = 0;
 
 	if (argv[1] != NULL)
 		read_file(argv[1], argv);
 	signal(SIGINT, signal_to_handel);
-	while (statue)
+	while (stat)
 	{
-		counter++;
+		ctr++;
 		if (isatty(STDIN_FILENO))
 			prompt();
 		input = _getline();
@@ -29,7 +29,7 @@ int main(__attribute__((unused)) int argc, char **argv)
 		cmd = parse_cmd(input);
 		if (_strcmp(cmd[0], "exit") == 0)
 		{
-			exit_bul(cmd, input, argv, counter);
+			exit_bul(cmd, input, argv, ctr);
 		}
 		else if (check_builtin(cmd) == 0)
 		{
@@ -39,15 +39,15 @@ int main(__attribute__((unused)) int argc, char **argv)
 		}
 		else
 		{
-			st = check_cmd(cmd, input, counter, argv);
+			st = check_cmd(cmd, input, ctr, argv);
 
 		}
 		free_all(cmd, input);
 	}
-	return (statue);
+	return (stat);
 }
 /**
- * check_builtin - check builtin
+ * check_builtin - for checking builtin
  *
  * @cmd:command to check
  * Return: 0 Succes -1 Fail
@@ -61,17 +61,17 @@ int check_builtin(char **cmd)
 		{"history", NULL},
 		{NULL, NULL}
 	};
-	int i = 0;
+	int x = 0;
 		if (*cmd == NULL)
 	{
 		return (-1);
 	}
 
-	while ((fun + i)->command)
+	while ((fun + x)->command)
 	{
-		if (_strcmp(cmd[0], (fun + i)->command) == 0)
+		if (_strcmp(cmd[0], (fun + x)->command) == 0)
 			return (0);
-		i++;
+		x++;
 	}
 	return (-1);
 }
@@ -82,9 +82,9 @@ int check_builtin(char **cmd)
  */
 void creat_envi(char **envi)
 {
-	int i;
+	int x;
 
-	for (i = 0; environ[i]; i++)
-		envi[i] = _strdup(environ[i]);
-	envi[i] = NULL;
+	for (x = 0; environ[x]; x++)
+		envi[x] = _strdup(environ[x]);
+	envi[x] = NULL;
 }

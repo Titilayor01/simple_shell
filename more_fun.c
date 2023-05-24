@@ -1,29 +1,32 @@
 #include "shell.h"
+
 /**
- * _strcpy - Copie Source To Destination Char
- * @dest:Destination
- * @src:Source
- * Return: Copie Of Char *
+ * _strcpy - copy source to destination char
+ * @dest: destination
+ * @src: source
+ * Return: copy of char
  */
+
 char *_strcpy(char *dest, char *src)
 {
-int i;
-
-i = 0;
-	while (src[i])
+	int x;
+	x = 0;
+	while (src[x])
 	{
-		dest[i] = src[i];
-		i++;
+		dest[x] = src[x];
+		x++;
 	}
-dest[i] = '\0';
-return (dest);
+	dest[x] = '\0';
+	return (dest);
 }
+
 /**
- * _strcat - Concat Two String
- * @dest:First String
- * @src:Second String
- * Return:First String + Second String Char *
+ * _strcat - concanate two string
+ * @dest: first string
+ * @src: second string
+ * Return: first string + second string char
  */
+
 char *_strcat(char *dest, char *src)
 {
 	char *s = dest;
@@ -42,25 +45,29 @@ char *_strcat(char *dest, char *src)
 	*dest = '\0';
 	return (s);
 }
+
 /**
  * _strchr - Locate Charactere In String
  * @s:String Search In
  * @c:Char To Search For
  * Return: Pointer To Char*
  */
+
 char *_strchr(char *s, char c)
 {
 
-	do		{
+	do
+	{
 
 		if (*s == c)
-			{
+		{
 			break;
-			}
-		}	while (*s++);
+		}
+	}	while (*s++);
 
-return (s);
+	return (s);
 }
+
 /**
  * _strncmp - Compare Amount (n) Of Characters Of Two Strings.
  * @s1: A String.
@@ -69,29 +76,32 @@ return (s);
  *
  * Return: 1 If The Strings Don't Match Otherwise 0
  */
+
 int _strncmp(const char *s1, const char *s2, size_t n)
 {
-	size_t i;
+	size_t x;
 
 	if (s1 == NULL)
 		return (-1);
-	for (i = 0; i < n && s2[i]; i++)
+	for (x = 0; x < n && s2[x]; x++)
 	{
-		if (s1[i] != s2[i])
+		if (s1[x] != s2[x])
 		{
 			return (1);
 		}
 	}
 	return (0);
 }
+
 /**
  * _strdup - Duplicate A String
  * @str:String
  * Return: Duplicate String Failed Null
  */
+
 char *_strdup(char *str)
 {
-	size_t len, i;
+	size_t len, x;
 	char *str2;
 
 	len = _strlen(str);
@@ -101,9 +111,9 @@ char *_strdup(char *str)
 		return (NULL);
 	}
 
-	for (i = 0; i <= len; i++)
+	for (x = 0; x <= len; x++)
 	{
-		str2[i] = str[i];
+		str2[x] = str[x];
 	}
 
 	return (str2);
