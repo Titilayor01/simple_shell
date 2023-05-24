@@ -11,6 +11,7 @@ char *_strcpy(char *dest, char *src)
 {
 	int x;
 	x = 0;
+
 	while (src[x])
 	{
 		dest[x] = src[x];
@@ -56,8 +57,7 @@ char *_strcat(char *dest, char *src)
 char *_strchr(char *s, char c)
 {
 
-	do
-	{
+	do{
 
 		if (*s == c)
 		{
