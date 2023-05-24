@@ -93,16 +93,29 @@ write (man 2 write)
 
 
 # files
+- .corrections.c.swp
 - .gitignore
+- .simple_shell_history
 - AUTHORS
 - README.md
+- more_fun.c
 - shell.c
 - shell.h
-- ss_engine.c
+- ss_builtin.c
+- ss_char.c
 - ss_execute.c
-- ss_gas.c
+- ss_file.c
+- ss_getline.c
+- ss_history.c
+- ss_memory.c
+- ss_more_b.c
+- ss_morechar.c
+- ss_output.c
+- ss_path.c
+- ss_printer.c
 - ss_prompt.c
-- ss_string.c
+- ss_strtok.c
+- ss_token.c
 
 ## How to add Author file
 `Bash script for generating the list of authors in git repo`
